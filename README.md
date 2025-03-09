@@ -1,2 +1,2 @@
-# goit-js-hw-01
-YHez_1st_JS_DZ
+# goit-js-hw-08
+YHez_8th_JS_DZ
