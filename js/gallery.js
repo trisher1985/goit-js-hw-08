@@ -107,7 +107,7 @@ galleryContainer.addEventListener("click", onGalleryClick);
 function onGalleryClick(event) {
   event.preventDefault(); // event.preventDefault() — запобігає стандартній поведінці браузера (наприклад, переходу за посиланням чи завантаження картинки при кліку).
   
-  // Перевірка if (event.target.nodeName !== "IMG") гарантує, що код виконується лише при кліку на зображення (<img>), а не на інші елементи.
+  // Перевірка if (event.target.nodeName !== "IMG") гарантує, що код виконується лише при кліку на зображення (<img>), а не на інші елементи. (делегування)
   if (event.target.nodeName !== "IMG") {
     return;
   }
