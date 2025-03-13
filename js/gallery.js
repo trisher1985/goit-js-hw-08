@@ -64,17 +64,25 @@ const images = [
   },
 ];
 
-const galleryContainer = document.querySelector("ul.gallery");
 
-const galleryMarkup = images
-  .map(
+const galleryContainer = document.querySelector("ul.gallery"); 
+// знаходимо елемент <ul> з класом gallery у документі та зберігаємо його у змінній galleryContainer. 
+// використовувуємо для вставки елементів галереї
+
+
+const galleryMarkup = images //images — це масив об'єктів, де кожен об'єкт містить властивості preview, original та description.
+// Метод map проходить по кожному елементу масиву images і створює HTML-розмітку для кожного зображення.
+// preview — це URL зменшеної версії зображення, яке відображається в галереї.
+// original — це URL повнорозмірного зображення, яке буде відкриватися при кліку.
+// description — це текст, який буде використовуватися як атрибут alt для зображення.
+.map( 
     ({ preview, original, description }) => `
       <li class="gallery-item">
         <a class="gallery-link" href="${original}">
           <img
             class="gallery-image"
-            src="${preview}"
-            data-source="${original}"
+            src="${preview}"  
+            data-source="${original}" 
             alt="${description}"
           />
         </a>
@@ -82,10 +90,20 @@ const galleryMarkup = images
   )
   .join("");
 
+// join("") об'єднує всі елементи масиву в один рядок, щоб отримати готову HTML-розмітку для всієї галереї.
+
 galleryContainer.innerHTML = galleryMarkup;
 
+// вставляє згенеровану розмітку галереї всередину елемента galleryContainer.
+
+
+// обробника подій для кліку на галерею
 galleryContainer.addEventListener("click", onGalleryClick);
 
+// додає обробник події click на контейнер галереї. При кліку на будь-який елемент всередині контейнера буде викликана функція onGalleryClick.
+
+
+// Функція обробки кліку onGalleryClick
 function onGalleryClick(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
@@ -100,9 +118,19 @@ function onGalleryClick(event) {
   instance.show();
 }
 
-function openModal(imageUrl) {
-  const instance = basicLightbox.create(`
-    <img src="${imageUrl}" alt="Large Image" />
-  `);
-  instance.show();
-}
+// event.preventDefault() — запобігає стандартній поведінці браузера (наприклад, переходу за посиланням чи завантаження картинки при кліку).
+
+// Перевірка if (event.target.nodeName !== "IMG") гарантує, що код виконується лише при кліку на зображення (<img>), а не на інші елементи.
+
+// event.target.dataset.source отримує URL повнорозмірного зображення з атрибута data-source зображення, на яке клікнули.
+
+// basicLightbox.create створює модальне вікно з повнорозмірним зображенням.
+
+// instance.show() відображає модальне вікно.
+
+// function openModal(imageUrl) { // відкриття великого зображення в новому вікні
+//   const instance = basicLightbox.create(`
+//     <img src="${imageUrl}" alt="Large Image" />
+//   `);
+//   instance.show();
+// }
