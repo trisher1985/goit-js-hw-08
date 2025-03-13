@@ -105,32 +105,18 @@ galleryContainer.addEventListener("click", onGalleryClick);
 
 // Функція обробки кліку onGalleryClick
 function onGalleryClick(event) {
-  event.preventDefault();
+  event.preventDefault(); // event.preventDefault() — запобігає стандартній поведінці браузера (наприклад, переходу за посиланням чи завантаження картинки при кліку).
+  
+  // Перевірка if (event.target.nodeName !== "IMG") гарантує, що код виконується лише при кліку на зображення (<img>), а не на інші елементи.
   if (event.target.nodeName !== "IMG") {
     return;
   }
-
+// event.target.dataset.source отримує URL повнорозмірного зображення з атрибута data-source зображення, на яке клікнули.
   const largeImageURL = event.target.dataset.source;
-
+// basicLightbox.create створює модальне вікно з повнорозмірним зображенням.
   const instance = basicLightbox.create(`
     <img src="${largeImageURL}" alt="${event.target.alt}" />
   `);
+  // instance.show() відображає модальне вікно.
   instance.show();
 }
-
-// event.preventDefault() — запобігає стандартній поведінці браузера (наприклад, переходу за посиланням чи завантаження картинки при кліку).
-
-// Перевірка if (event.target.nodeName !== "IMG") гарантує, що код виконується лише при кліку на зображення (<img>), а не на інші елементи.
-
-// event.target.dataset.source отримує URL повнорозмірного зображення з атрибута data-source зображення, на яке клікнули.
-
-// basicLightbox.create створює модальне вікно з повнорозмірним зображенням.
-
-// instance.show() відображає модальне вікно.
-
-// function openModal(imageUrl) { // відкриття великого зображення в новому вікні
-//   const instance = basicLightbox.create(`
-//     <img src="${imageUrl}" alt="Large Image" />
-//   `);
-//   instance.show();
-// }
